@@ -2,6 +2,11 @@ services:
   - type: web
     name: shl-assessment-agent
     env: python
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: PIP_ONLY_BINARY
+        value: pydantic-core
     buildCommand: python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     plan: free
